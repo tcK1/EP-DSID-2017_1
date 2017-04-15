@@ -9,7 +9,7 @@ public class Server implements PartRepository{
 	public static void main(String[] args){
 		try{
 			Server server = new Server();
-			PartRepository repo = (PartRepository)UnicastRemoteObject.exportObject(server);
+			PartRepository repo = (PartRepository)UnicastRemoteObject.exportObject(server, 0);
 			
 			Registry registry = LocateRegistry.getRegistry();
 			registry.bind("repo", repo);
