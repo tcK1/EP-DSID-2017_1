@@ -12,15 +12,15 @@ public class Server implements PartRepository{
 		this.parts = new LinkedList<Part>();
 	}
 	
-	public void addPart(Part part){
+	public void addPart(Part part) throws Exception{
 		parts.add(part);
 	}
 	
-	public Part getPart(String code){
+	public Part getPart(String code) throws Exception{
 		return getPart(UUID.fromString(code));		
 	}
 	
-	public Part getPart(UUID id){
+	public Part getPart(UUID id) throws Exception{
 		for(Part part : parts){
 			if(part.code == id)
 				return part;
@@ -28,7 +28,7 @@ public class Server implements PartRepository{
 		return null;
 	}
 	
-	public void listParts(){
+	public void listParts() throws Exception{
 		if(parts.isEmpty())
 			System.err.println("Repository is empty.");
 		else for(Part part : parts){
