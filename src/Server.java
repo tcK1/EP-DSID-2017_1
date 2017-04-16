@@ -1,14 +1,14 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Server implements PartRepository{
 
-	ArrayList<Part> parts;
+	LinkedList<Part> parts;
 	
 	public Server(){
-		this.parts = new ArrayList<Part>();
+		this.parts = new LinkedList<Part>();
 	}
 	
 	public void listParts(){
