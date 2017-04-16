@@ -16,6 +16,13 @@ public class Client{
 		currentRepo = (PartRepository)registry.lookup("repo");
 	}
 	
+	static void listParts() throws Exception{
+		if(currentRepo == null)
+			System.err.println("No repository selected.");
+		else
+			currentRepo.listParts();
+	}
+	
     public static void main(String[] args){
     	try{
     		bind();
@@ -26,6 +33,7 @@ public class Client{
                     	bind();
                         break;
                     case "listp":
+                    	listParts();
                         break;
                     case "getp":
                         break;

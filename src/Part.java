@@ -15,4 +15,8 @@ public class Part {
 		this.parts = new ArrayList<PartQuantity>();
 	}
 	
+	public String toString(){
+		return String.format("%s %s", name, description);
+	}
+	
 }
