@@ -6,6 +6,7 @@ public class Client{
 
 	static Scanner scanner = new Scanner(System.in);
 	
+	static Part currentPart;
 	static PartRepository currentRepo;
 	
 	/*TODO*/
@@ -14,6 +15,12 @@ public class Client{
         String host = scanner.nextLine();
 		Registry registry = LocateRegistry.getRegistry(host);
 		currentRepo = (PartRepository)registry.lookup("repo");
+	}
+	
+	static void getPart() throws Exception{
+		System.out.print("Please, enter part's code: ");
+		String code = scanner.nextLine();
+		currentPart = currentRepo.getPart(code);
 	}
 	
 	static void listParts() throws Exception{
@@ -36,6 +43,7 @@ public class Client{
                     	listParts();
                         break;
                     case "getp":
+                    	getPart();
                         break;
                     case "showp":
                         break;

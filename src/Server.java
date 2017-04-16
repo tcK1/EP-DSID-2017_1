@@ -2,6 +2,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
+import java.util.UUID;
 
 public class Server implements PartRepository{
 
@@ -9,6 +10,18 @@ public class Server implements PartRepository{
 	
 	public Server(){
 		this.parts = new LinkedList<Part>();
+	}
+	
+	public Part getPart(String code){
+		return getPart(UUID.fromString(code));		
+	}
+	
+	public Part getPart(UUID id){
+		for(Part part : parts){
+			if(part.code == id)
+				return part;
+		}
+		return null;
 	}
 	
 	public void listParts(){
