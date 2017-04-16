@@ -53,6 +53,7 @@ public class Client{
                     	getPart();
                         break;
                     case "showp":
+                    	showPartInfo();
                         break;
                     case "clearlist":
                         break;
