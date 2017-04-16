@@ -1,8 +1,10 @@
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.UUID;
 
-public class Part{
+public class Part implements Serializable{
 
+	static final long serialVersionUID = 1L;
 	UUID code;
 	String name;
 	String description;
