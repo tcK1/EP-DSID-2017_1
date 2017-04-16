@@ -23,6 +23,13 @@ public class Client{
 		currentPart = currentRepo.getPart(code);
 	}
 	
+	static void showPartInfo() throws Exception{
+		if(currentPart == null)
+			System.err.println("No part selected.");
+		else
+			currentPart.showPartInfo();
+	}
+	
 	static void listParts() throws Exception{
 		if(currentRepo == null)
 			System.err.println("No repository selected.");

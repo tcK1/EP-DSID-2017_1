@@ -25,11 +25,13 @@ public class Server implements PartRepository{
 	}
 	
 	public void listParts(){
-		for(Part part : parts){
+		if(parts.isEmpty())
+			System.err.println("Repository is empty.");
+		else for(Part part : parts){
 			System.out.println(part.toString());
 		}
 	}
-	
+		
 	public static void main(String[] args){
 		try{
 			Server object = new Server();
