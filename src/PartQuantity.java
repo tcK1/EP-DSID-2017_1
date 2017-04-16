@@ -8,4 +8,7 @@ public class PartQuantity {
 		this.quantity = quantity;
 	}
 	
+	public String toString(){
+		return "<" + part.code + ": " + part.name + " x " + quantity + ">";
+	}
 }
