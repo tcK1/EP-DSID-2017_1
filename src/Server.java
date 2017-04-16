@@ -12,6 +12,10 @@ public class Server implements PartRepository{
 		this.parts = new LinkedList<Part>();
 	}
 	
+	public void addPart(Part part){
+		parts.add(part);
+	}
+	
 	public Part getPart(String code){
 		return getPart(UUID.fromString(code));		
 	}

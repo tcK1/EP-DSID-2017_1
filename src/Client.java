@@ -1,5 +1,6 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Client{
@@ -8,13 +9,31 @@ public class Client{
 	
 	static Part currentPart;
 	static PartRepository currentRepo;
+	static LinkedList<PartQuantity> subparts = new LinkedList<PartQuantity>();
 	
-	/*TODO*/
+	static void addPart() throws Exception{
+		System.out.print("Please, enter part's name: ");
+		String name = scanner.nextLine();
+		System.out.print("Please, enter part's description: ");
+		String description = scanner.nextLine();
+		currentRepo.addPart(new Part(name, description, subparts));
+	}
+	
+	static void addSubpart() throws Exception{
+		System.out.print("Please, enter quantity: ");
+		int quantity = scanner.nextInt();
+		subparts.add(new PartQuantity(currentPart, quantity));
+	}
+	
 	static void bind() throws Exception{
         System.out.print("Please, enter host: ");
         String host = scanner.nextLine();
 		Registry registry = LocateRegistry.getRegistry(host);
 		currentRepo = (PartRepository)registry.lookup("repo");
+	}
+	
+	static void clearList() throws Exception{
+		subparts.clear();
 	}
 	
 	static void getPart() throws Exception{
@@ -56,10 +75,13 @@ public class Client{
                     	showPartInfo();
                         break;
                     case "clearlist":
+                    	clearList();
                         break;
                     case "addsubpart":
+                    	addSubpart();
                         break;
                     case "addp":
+                    	addPart();
                         break;
                     case "quit":
                         scanner.close();

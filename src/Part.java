@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.UUID;
 
 public class Part{
@@ -6,13 +6,13 @@ public class Part{
 	UUID code;
 	String name;
 	String description;
-	ArrayList<PartQuantity> parts;
+	LinkedList<PartQuantity> parts;
 	
-	public Part(String name, String description){
+	public Part(String name, String description, LinkedList<PartQuantity> parts){
 		this.code = UUID.randomUUID();
 		this.name = name;
 		this.description = description;
-		this.parts = new ArrayList<PartQuantity>();
+		this.parts = parts;
 	}
 	
 	public void showPartInfo(){
