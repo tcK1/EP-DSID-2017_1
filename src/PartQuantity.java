@@ -9,6 +9,6 @@ public class PartQuantity {
 	}
 	
 	public String toString(){
-		return "<" + part.code + ": " + part.name + " x " + quantity + ">";
+		return "<" + part.code + ": " + part.name + " x" + quantity + ">";
 	}
 }
