@@ -88,7 +88,7 @@ public class Client{
                         System.exit(0);
                         break;
                     default:
-                        System.err.println(String.format("Command not found: '%s'.", line));
+                        System.err.println("Command not found: '" + line + "'.");
                         break;
                 }
             }

@@ -18,19 +18,19 @@ public class Part implements Serializable{
 	}
 	
 	public void showPartInfo(){
-		System.out.println(String.format("[%s] %s", code, name));
-		System.out.println(String.format("\t%s", description));
+		System.out.println(this.toString());
+		System.out.println("\tDescription: " + description);
 		if(!parts.isEmpty()){
 			System.out.println("\tSubparts: [");
 			for(PartQuantity tuple : parts){
-				System.out.println(String.format("\t\t%s", tuple.toString()));
+				System.out.println("\t\t" + tuple.toString());
 			}
 			System.out.println("\t]");
 		}
 	}
 	
 	public String toString(){
-		return String.format("%s %s", code, name);
+		return name + " [" + code.toString() + "]";
 	}
 	
 }
