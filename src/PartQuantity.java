@@ -9,6 +9,6 @@ public class PartQuantity {
 	}
 	
 	public String toString(){
-		return "<" + part.code + ": " + part.name + " x" + quantity + ">";
+		return String.format("%dx\t%s [%s]", quantity, part.name, part.code);
 	}
 }
