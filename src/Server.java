@@ -42,7 +42,7 @@ public class Server implements PartRepository{
 			PartRepository repo = (PartRepository)UnicastRemoteObject.exportObject(object, 0);
 			
 			Registry registry = LocateRegistry.getRegistry();
-			registry.bind("repo", repo);
+			registry.rebind("repo", repo);
 		}
 		catch(Exception e){
 			System.err.println("Exception: " + e.toString());

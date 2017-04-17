@@ -28,6 +28,7 @@ public class Client{
 	static void bind() throws Exception{
         System.out.print("Please, enter host: ");
         String host = scanner.nextLine();
+        System.setProperty("java.rmi.server.hostname", host);
 		Registry registry = LocateRegistry.getRegistry(host);
 		currentRepo = (PartRepository)registry.lookup("repo");
 	}
