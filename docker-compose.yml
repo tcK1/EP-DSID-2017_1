@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+
+  client1:
+    build:
+      context: .
+      dockerfile: Dockerfile-client
+    links:
+      - server
+
+  client2:
+    build:
+      context: .
+      dockerfile: Dockerfile-client
+    links:
+      - server

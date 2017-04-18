@@ -1,0 +1,7 @@
+FROM java:7-jdk
+
+COPY ./src /usr/src/app
+WORKDIR /usr/src/app
+
+RUN javac Client.java
+CMD ["java", "Client"]
