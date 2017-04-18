@@ -12,6 +12,6 @@ public class PartQuantity implements Serializable{
 	}
 	
 	public String toString(){
-		return quantity + "x\t" + part.toString();
+		return quantity + "x \t" + part.toString();
 	}
 }

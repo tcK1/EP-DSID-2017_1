@@ -30,7 +30,7 @@ public class Server implements PartRepository{
 	
 	public String listParts() throws Exception{
 		if(parts.isEmpty())
-			return "Repository is empty.";
+			return null;
 		else{
 			StringBuilder s = new StringBuilder();
 			for(Part part : parts){

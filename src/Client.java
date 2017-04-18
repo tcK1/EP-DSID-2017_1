@@ -50,11 +50,21 @@ public class Client{
 			System.out.println(currentPart.showPartInfo());
 	}
 	
+	
+	static void getServerAddress(){
+		System.out.println(System.getProperty("java.rmi.server.hostname"));
+	}
+	
 	static void listParts() throws Exception{
 		if(currentRepo == null)
 			System.err.println("No repository selected.");
-		else
-			System.out.print(currentRepo.listParts());
+		else{
+			String list = currentRepo.listParts();
+			if(list == null)
+				System.err.println("Repository is empty");
+			else
+				System.out.print(currentRepo.listParts());
+		}
 	}
 	
     public static void main(String[] args){
@@ -66,6 +76,9 @@ public class Client{
                     case "rebind":
                     	bind();
                         break;
+                    case "remoteaddr":
+                    	getServerAddress();
+                    	break;
                     case "listp":
                     	listParts();
                         break;
