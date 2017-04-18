@@ -17,6 +17,10 @@ public class Part implements Serializable{
 		this.parts = parts;
 	}
 	
+	public int countSubparts(){
+		return parts.size();
+	}
+	
 	public String showPartInfo(){
 		StringBuilder s = new StringBuilder(this.toString());
 		s.append("\n").append("\tDescription: ").append(description).append("\n");
@@ -25,7 +29,7 @@ public class Part implements Serializable{
 			for(PartQuantity tuple : parts){
 				s.append("\t\t").append(tuple.toString()).append("\n");
 			}
-			s.append("\t]");
+			s.append("\t]").append("\n");
 		}
 		return s.toString();
 	}

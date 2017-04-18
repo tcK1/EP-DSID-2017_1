@@ -12,6 +12,10 @@ public class Client{
 	static LinkedList<PartQuantity> subparts = new LinkedList<PartQuantity>();
 	
 	static void addPart() throws Exception{
+		if(currentRepo == null){
+			System.err.println("No repository selected.");
+			return;
+		}
 		System.out.print("Please, enter part's name: ");
 		String name = scanner.nextLine();
 		System.out.print("Please, enter part's description: ");
@@ -20,6 +24,10 @@ public class Client{
 	}
 	
 	static void addSubpart() throws Exception{
+		if(currentPart == null){
+			System.err.println("No part selected.");
+			return;
+		}
 		System.out.print("Please, enter quantity: ");
 		int quantity = scanner.nextInt();
 		subparts.add(new PartQuantity(currentPart, quantity));
@@ -37,21 +45,43 @@ public class Client{
 		subparts.clear();
 	}
 	
+	static void countParts() throws Exception{
+		if(currentRepo == null){
+			System.err.println("No repository selected.");
+			return;
+		}
+		int count = currentRepo.countParts();
+		if(count == 0)
+			System.err.println("Repository is empty.");
+		else
+			System.out.println("Repository contains " + count + " part(s).");
+	}
+	
+	static void countSubparts(){
+		if(currentPart == null){
+			System.err.println("No part selected.");
+			return;
+		}
+		int count = currentPart.countSubparts();
+		if(count == 0)
+			System.out.println("Part is primitive.");
+		else
+			System.out.println("Part is aggregate, and contains " + count + " subpart(s).");
+	}
+	
 	static void getPart() throws Exception{
+		if(currentRepo == null){
+			System.err.println("No repository selected.");
+			return;
+		}
 		System.out.print("Please, enter part's code: ");
 		String code = scanner.nextLine();
 		currentPart = currentRepo.getPart(code);
-	}
-	
-	static void showPartInfo() throws Exception{
 		if(currentPart == null)
-			System.err.println("No part selected.");
-		else
-			System.out.println(currentPart.showPartInfo());
+			System.err.println("Part not found on this server.");
 	}
 	
-	
-	static void getServerAddress(){
+	static void getRemoteAddress() throws Exception{
 		System.out.println(System.getProperty("java.rmi.server.hostname"));
 	}
 	
@@ -61,10 +91,24 @@ public class Client{
 		else{
 			String list = currentRepo.listParts();
 			if(list == null)
-				System.err.println("Repository is empty");
+				System.err.println("Repository is empty.");
 			else
 				System.out.print(currentRepo.listParts());
 		}
+	}
+	
+	static void listSubparts() throws Exception{
+		if(subparts.isEmpty())
+			System.err.println("Subparts list is empty.");
+		else for(PartQuantity subpart: subparts)
+			System.out.println(subpart.toString());
+	}
+	
+	static void showPartInfo() throws Exception{
+		if(currentPart == null)
+			System.err.println("No part selected.");
+		else
+			System.out.print(currentPart.showPartInfo());
 	}
 	
     public static void main(String[] args){
@@ -73,36 +117,44 @@ public class Client{
     		while(true){
                 String line = scanner.nextLine();
                 switch(line){
-                    case "rebind":
-                    	bind();
-                        break;
-                    case "remoteaddr":
-                    	getServerAddress();
-                    	break;
-                    case "listp":
-                    	listParts();
-                        break;
-                    case "getp":
-                    	getPart();
-                        break;
-                    case "showp":
-                    	showPartInfo();
-                        break;
-                    case "clearlist":
-                    	clearList();
-                        break;
-                    case "addsubpart":
-                    	addSubpart();
-                        break;
-                    case "addp":
-                    	addPart();
-                        break;
-                    case "quit":
-                        scanner.close();
-                        System.exit(0);
-                        break;
-                    case "":
-                    	break;
+                	case "addPart":
+                		addPart();
+                		break;
+                	case "addSubpart":
+                		addSubpart();
+                		break;
+                	case "clearList":
+                		clearList();
+                		break;
+                	case "countParts":
+                		countParts();
+                		break;
+                	case "countSubparts":
+                		countSubparts();
+                		break;
+                	case "getPart":
+                		getPart();
+                		break;
+                	case "listParts":
+                		listParts();
+                		break;
+                	case "listSubparts":
+                		listSubparts();
+                		break;
+                	case "rebind":
+                		bind();
+                		break;
+                	case "remoteAddress":
+                		getRemoteAddress();
+                		break;
+                	case "showPart":
+                		showPartInfo();
+                		break;
+                	case "quit":
+                		scanner.close();
+                		System.exit(0);
+                	case "":
+                		break;
                     default:
                         System.err.println("Command not found: '" + line + "'.");
                         break;

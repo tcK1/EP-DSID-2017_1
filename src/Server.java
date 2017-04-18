@@ -16,6 +16,10 @@ public class Server implements PartRepository{
 		parts.add(part);
 	}
 	
+	public int countParts() throws Exception{
+		return parts.size();
+	}
+	
 	public Part getPart(String code) throws Exception{
 		return getPart(UUID.fromString(code));		
 	}
