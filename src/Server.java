@@ -28,11 +28,15 @@ public class Server implements PartRepository{
 		return null;
 	}
 	
-	public void listParts() throws Exception{
+	public String listParts() throws Exception{
 		if(parts.isEmpty())
-			System.err.println("Repository is empty.");
-		else for(Part part : parts){
-			System.out.println(part.toString());
+			return "Repository is empty.";
+		else{
+			StringBuilder s = new StringBuilder();
+			for(Part part : parts){
+				s.append(part.toString()).append("\n");
+			}
+			return s.toString();
 		}
 	}
 		

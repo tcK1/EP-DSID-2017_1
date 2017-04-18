@@ -47,14 +47,14 @@ public class Client{
 		if(currentPart == null)
 			System.err.println("No part selected.");
 		else
-			currentPart.showPartInfo();
+			System.out.println(currentPart.showPartInfo());
 	}
 	
 	static void listParts() throws Exception{
 		if(currentRepo == null)
 			System.err.println("No repository selected.");
 		else
-			currentRepo.listParts();
+			System.out.print(currentRepo.listParts());
 	}
 	
     public static void main(String[] args){

@@ -17,16 +17,17 @@ public class Part implements Serializable{
 		this.parts = parts;
 	}
 	
-	public void showPartInfo(){
-		System.out.println(this.toString());
-		System.out.println("\tDescription: " + description);
+	public String showPartInfo(){
+		StringBuilder s = new StringBuilder(this.toString());
+		s.append("\tDescription: ").append(description);
 		if(!parts.isEmpty()){
-			System.out.println("\tSubparts: [");
+			s.append("\tSubparts: [");
 			for(PartQuantity tuple : parts){
-				System.out.println("\t\t" + tuple.toString());
+				s.append("\t\t").append(tuple.toString());
 			}
-			System.out.println("\t]");
+			s.append("\t]");
 		}
+		return s.toString();
 	}
 	
 	public String toString(){
