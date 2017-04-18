@@ -88,6 +88,8 @@ public class Client{
                         scanner.close();
                         System.exit(0);
                         break;
+                    case "":
+                    	break;
                     default:
                         System.err.println("Command not found: '" + line + "'.");
                         break;
