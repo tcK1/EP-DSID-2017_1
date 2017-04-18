@@ -22,7 +22,7 @@ public class Server implements PartRepository{
 	
 	public Part getPart(UUID id) throws Exception{
 		for(Part part : parts){
-			if(part.code == id)
+			if(id.equals(part.code))
 				return part;
 		}
 		return null;
