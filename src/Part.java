@@ -21,7 +21,7 @@ public class Part implements Serializable{
 		StringBuilder s = new StringBuilder(this.toString());
 		s.append("\n").append("\tDescription: ").append(description).append("\n");
 		if(!parts.isEmpty()){
-			s.append("\tSubparts: [").append("\n");
+			s.append("\tSubparts(").append(parts.size()).append("): [").append("\n");
 			for(PartQuantity tuple : parts){
 				s.append("\t\t").append(tuple.toString()).append("\n");
 			}
