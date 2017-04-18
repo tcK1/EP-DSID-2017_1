@@ -2,6 +2,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Client{
 
@@ -76,9 +77,15 @@ public class Client{
 		}
 		System.out.print("Please, enter part's code: ");
 		String code = scanner.nextLine();
-		currentPart = currentRepo.getPart(code);
-		if(currentPart == null)
-			System.err.println("Part not found on this server.");
+		try{
+			UUID id = UUID.fromString(code);
+			currentPart = currentRepo.getPart(id);
+			if(currentPart == null)
+				System.err.println("Part not found on this server.");
+		}
+		catch(IllegalArgumentException e){
+			System.err.println("Invalid UUID.");
+		}
 	}
 	
 	static void getRemoteAddress() throws Exception{
