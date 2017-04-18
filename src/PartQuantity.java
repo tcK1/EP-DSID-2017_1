@@ -1,5 +1,8 @@
-public class PartQuantity {
+import java.io.Serializable;
 
+public class PartQuantity implements Serializable{
+
+	static final long serialVersionUID = 1L;
 	Part part;
 	int quantity;
 	
