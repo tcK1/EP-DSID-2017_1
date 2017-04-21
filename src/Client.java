@@ -10,6 +10,7 @@ public class Client{
 	
 	static Part currentPart;
 	static PartRepository currentRepo;
+	static Registry registry;
 	static LinkedList<PartQuantity> subparts = new LinkedList<PartQuantity>();
 	
 	static void addPart() throws Exception{
@@ -32,14 +33,6 @@ public class Client{
 		System.out.print("Please, enter quantity: ");
 		int quantity = scanner.nextInt();
 		subparts.add(new PartQuantity(currentPart, quantity));
-	}
-	
-	static void bind() throws Exception{
-        System.out.print("Please, enter host: ");
-        String host = scanner.nextLine();
-        System.setProperty("java.rmi.server.hostname", host);
-		Registry registry = LocateRegistry.getRegistry(host);
-		currentRepo = (PartRepository)registry.lookup("repo");
 	}
 	
 	static void clearList() throws Exception{
@@ -88,6 +81,13 @@ public class Client{
 		}
 	}
 	
+	static void getRegistry() throws Exception{
+        System.out.print("Please, enter registry's host: ");
+        String host = scanner.nextLine();
+		registry = LocateRegistry.getRegistry(host);
+		listRepos();
+	}
+	
 	static void getRemoteAddress() throws Exception{
 		System.out.println(System.getProperty("java.rmi.server.hostname"));
 	}
@@ -104,12 +104,28 @@ public class Client{
 		}
 	}
 	
+	static void listRepos() throws Exception{
+		String[] names = registry.list();
+		for(String name : names)
+			System.out.println(name);
+	}
+	
 	static void listSubparts() throws Exception{
 		if(subparts.isEmpty())
 			System.err.println("Subparts list is empty.");
 		else for(PartQuantity subpart: subparts)
 			System.out.println(subpart.toString());
 	}
+	
+	static void serverLookup() throws Exception{
+        System.out.print("Please, enter repository's name: ");
+        String name = scanner.nextLine();
+		currentRepo = (PartRepository)registry.lookup("repo");
+		if(currentRepo == null)
+			System.err.println("No repository found.");
+		else
+	        System.setProperty("java.rmi.server.hostname", name);
+	}	
 	
 	static void showPartInfo() throws Exception{
 		if(currentPart == null)
@@ -120,7 +136,8 @@ public class Client{
 	
     public static void main(String[] args){
     	try{
-    		bind();
+    		getRegistry();
+    		serverLookup();
     		while(true){
                 String line = scanner.nextLine();
                 switch(line){
@@ -145,15 +162,18 @@ public class Client{
                 	case "listParts":
                 		listParts();
                 		break;
+                	case "listRepos":
+                		listRepos();
+                		break;
                 	case "listSubparts":
                 		listSubparts();
-                		break;
-                	case "rebind":
-                		bind();
                 		break;
                 	case "remoteAddress":
                 		getRemoteAddress();
                 		break;
+                	case "serverLookup":
+                		serverLookup();
+                		break;                		
                 	case "showPart":
                 		showPartInfo();
                 		break;
