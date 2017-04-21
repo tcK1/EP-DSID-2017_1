@@ -2,17 +2,20 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
+import java.util.Scanner;
 import java.util.UUID;
 
 public class Server implements PartRepository{
 
 	LinkedList<Part> parts;
+	String name;
 	
 	public Server(){
 		this.parts = new LinkedList<Part>();
 	}
 	
 	public void addPart(Part part) throws Exception{
+		part.setRepo(name);
 		parts.add(part);
 	}
 	
@@ -46,11 +49,18 @@ public class Server implements PartRepository{
 		
 	public static void main(String[] args){
 		try{
-			Server object = new Server();
-			PartRepository repo = (PartRepository)UnicastRemoteObject.exportObject(object, 0);
+			Scanner scanner = new Scanner(System.in);
 			
-			Registry registry = LocateRegistry.getRegistry();
-			registry.rebind("repo", repo);
+			System.out.println("Please enter registry's host: ");
+			String registryHost = scanner.nextLine();
+			Registry registry = LocateRegistry.getRegistry(registryHost);
+			
+			System.out.println("Please enter server's name: ");
+			String name = scanner.nextLine();
+			PartRepository repo = (PartRepository)UnicastRemoteObject.exportObject(new Server());
+			registry.bind(name, repo);
+			
+			scanner.close();
 		}
 		catch(Exception e){
 			System.err.println("Exception: " + e.toString());

@@ -9,6 +9,7 @@ public class Part implements Serializable{
 	String name;
 	String description;
 	LinkedList<PartQuantity> parts;
+	String repo;
 	
 	public Part(String name, String description, LinkedList<PartQuantity> parts){
 		this.code = UUID.randomUUID();
@@ -22,6 +23,14 @@ public class Part implements Serializable{
 		for(PartQuantity tuple : parts)
 			count += tuple.quantity;
 		return count;
+	}
+	
+	public String getRepo(){
+		return this.repo;
+	}
+	
+	public void setRepo(String repo){
+		this.repo = repo;
 	}
 	
 	public String showPartInfo(){

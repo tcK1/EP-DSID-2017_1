@@ -134,6 +134,11 @@ public class Client{
 			System.out.print(currentPart.showPartInfo());
 	}
 	
+	static void whereIsPart() throws Exception{
+		String repo = currentPart.getRepo();
+		System.out.println("Part is in '" + repo + "' repository.");
+	}
+	
     public static void main(String[] args){
     	try{
     		getRegistry();
@@ -176,6 +181,9 @@ public class Client{
                 		break;                		
                 	case "showPart":
                 		showPartInfo();
+                		break;
+                	case "whereIsPart":
+                		whereIsPart();
                 		break;
                 	case "quit":
                 		scanner.close();
