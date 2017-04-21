@@ -23,6 +23,10 @@ public class Server implements PartRepository{
 		return parts.size();
 	}
 	
+	public String getName() throws Exception{
+		return name;
+	}
+	
 	public Part getPart(String code) throws Exception{
 		return getPart(UUID.fromString(code));		
 	}

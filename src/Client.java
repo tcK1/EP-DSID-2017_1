@@ -88,10 +88,6 @@ public class Client{
 		listRepos();
 	}
 	
-	static void getRemoteAddress() throws Exception{
-		System.out.println(System.getProperty("java.rmi.server.hostname"));
-	}
-	
 	static void listParts() throws Exception{
 		if(currentRepo == null)
 			System.err.println("No repository selected.");
@@ -135,8 +131,19 @@ public class Client{
 	}
 	
 	static void whereIsPart() throws Exception{
-		String repo = currentPart.getRepo();
-		System.out.println("Part is in '" + repo + "' repository.");
+		if(currentPart == null)
+			System.err.println("No part selected.");
+		else{
+			String repo = currentPart.getRepo();
+			System.out.println("Part is in '" + repo + "' repository.");
+		}
+	}
+
+	static void whoIsRepo() throws Exception{
+		if(currentRepo == null)
+			System.err.println("No repository selected.");
+		else
+			System.out.println(currentRepo.getName());
 	}
 	
     public static void main(String[] args){
@@ -173,9 +180,6 @@ public class Client{
                 	case "listSubparts":
                 		listSubparts();
                 		break;
-                	case "remoteAddress":
-                		getRemoteAddress();
-                		break;
                 	case "serverLookup":
                 		serverLookup();
                 		break;                		
@@ -184,6 +188,9 @@ public class Client{
                 		break;
                 	case "whereIsPart":
                 		whereIsPart();
+                		break;
+                	case "whoIsRepo":
+                		whoIsRepo();
                 		break;
                 	case "quit":
                 		scanner.close();
