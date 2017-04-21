@@ -18,7 +18,10 @@ public class Part implements Serializable{
 	}
 	
 	public int countSubparts(){
-		return parts.size();
+		int count = 0;
+		for(PartQuantity tuple : parts)
+			count += tuple.quantity;
+		return count;
 	}
 	
 	public String showPartInfo(){
