@@ -1,3 +1,5 @@
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.registry.Registry;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -6,6 +8,15 @@ import java.util.HashMap;
 public class RepositoryRegistry implements Registry{
 	
 	private HashMap<String, Remote> repos = new HashMap<String, Remote>();
+	
+	public RepositoryRegistry(){
+		try{
+			System.out.println(InetAddress.getLocalHost().getHostName());
+		}
+		catch(UnknownHostException e){
+			System.err.println("Unknown hostname.");
+		}
+	}
 	
 	public void bind(String name, Remote repo) throws RemoteException{
 		if(repo instanceof PartRepository){
