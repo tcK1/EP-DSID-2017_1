@@ -51,7 +51,7 @@ public class Client{
 			System.out.println("Repository contains " + count + " part(s).");
 	}
 	
-	static void countSubparts(){
+	static void countSubparts() throws Exception{
 		if(currentPart == null){
 			System.err.println("No part selected.");
 			return;
