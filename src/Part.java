@@ -19,7 +19,7 @@ public class Part implements Serializable{
 		this.repo = repo;
 	}
 	
-	public int countSubparts(){
+	public int countSubparts() throws Exception{
 		int count = 0;
 		for(PartQuantity tuple : parts)
 			count += tuple.quantity;
@@ -30,7 +30,7 @@ public class Part implements Serializable{
 		return this.repo;
 	}
 	
-	public String showPartInfo(){
+	public String showPartInfo() throws Exception{
 		StringBuilder s = new StringBuilder(this.toString());
 		s.append("\n").append("\tDescription: ").append(description).append("\n");
 		if(!parts.isEmpty()){
