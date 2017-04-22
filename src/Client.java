@@ -21,7 +21,7 @@ public class Client{
 		String name = scanner.nextLine();
 		System.out.print("Please, enter part's description: ");
 		String description = scanner.nextLine();
-		currentRepo.addPart(new Part(name, description, subparts));
+		currentRepo.addPart(name, description, subparts);
 	}
 	
 	static void addSubpart() throws Exception{
@@ -118,6 +118,16 @@ public class Client{
 			System.out.print(currentPart.showPartInfo());
 	}
 	
+	static void whereIsPart() throws Exception{
+		if(currentPart == null)
+			System.err.println("No part selected.");
+		else{
+			String repo = currentPart.getRepo();
+			System.out.println("Part is in '" + repo + "' repository.");
+		}
+			
+	}
+	
     public static void main(String[] args){
     	try{
     		bind();
@@ -156,6 +166,9 @@ public class Client{
                 		break;
                 	case "showPart":
                 		showPartInfo();
+                		break;
+                	case "whereIsPart":
+                		whereIsPart();
                 		break;
                 	case "quit":
                 		scanner.close();

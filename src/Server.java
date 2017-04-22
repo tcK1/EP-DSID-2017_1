@@ -1,3 +1,4 @@
+import java.net.InetAddress;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
@@ -6,14 +7,16 @@ import java.util.UUID;
 
 public class Server implements PartRepository{
 
+	String name;
 	LinkedList<Part> parts;
 	
-	public Server(){
+	public Server(String name){
+		this.name = name;
 		this.parts = new LinkedList<Part>();
 	}
 	
-	public void addPart(Part part) throws Exception{
-		parts.add(part);
+	public void addPart(String name, String description, LinkedList<PartQuantity> subparts) throws Exception{
+		parts.add(new Part(name, description, subparts, this.name));
 	}
 	
 	public int countParts() throws Exception{
@@ -46,7 +49,9 @@ public class Server implements PartRepository{
 		
 	public static void main(String[] args){
 		try{
-			Server object = new Server();
+			String name = InetAddress.getLocalHost().getHostName();
+			
+			Server object = new Server(name);
 			PartRepository repo = (PartRepository)UnicastRemoteObject.exportObject(object, 0);
 			
 			Registry registry = LocateRegistry.getRegistry();
