@@ -1,5 +1,7 @@
 Kaic Nunes Bastidas - 8516048
+
 Leonardo Piccioni de Almeida - 8516094
+
 Lucas Covre Delboni - 8516006
 
 # EP de Distribuídos
