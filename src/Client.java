@@ -37,7 +37,6 @@ public class Client{
 	static void bind() throws Exception{
         System.out.print("Please, enter host: ");
         String host = scanner.nextLine();
-        System.setProperty("java.rmi.server.hostname", host);
 		Registry registry = LocateRegistry.getRegistry(host);
 		currentRepo = (PartRepository)registry.lookup("repo");
 	}
@@ -86,10 +85,6 @@ public class Client{
 		catch(IllegalArgumentException e){
 			System.err.println("Invalid UUID.");
 		}
-	}
-	
-	static void getRemoteAddress() throws Exception{
-		System.out.println(System.getProperty("java.rmi.server.hostname"));
 	}
 	
 	static void listParts() throws Exception{
@@ -166,9 +161,6 @@ public class Client{
                 		break;
                 	case "rebind":
                 		bind();
-                		break;
-                	case "remoteAddress":
-                		getRemoteAddress();
                 		break;
                 	case "showPart":
                 		showPartInfo();
