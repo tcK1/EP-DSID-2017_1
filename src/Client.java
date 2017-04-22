@@ -113,10 +113,10 @@ public class Client{
 			System.out.println(subpart.toString());
 	}
 	
-	static void serverLookup() throws Exception{
+	static void lookup() throws Exception{
         System.out.print("Please, enter repository's name: ");
         String name = scanner.nextLine();
-		currentRepo = (PartRepository)registry.lookup("repo");
+		currentRepo = (PartRepository)registry.lookup(name);
 		if(currentRepo == null)
 			System.err.println("No repository found.");
 		else
@@ -149,7 +149,7 @@ public class Client{
     public static void main(String[] args){
     	try{
     		getRegistry();
-    		serverLookup();
+    		lookup();
     		while(true){
                 String line = scanner.nextLine();
                 switch(line){
@@ -180,8 +180,8 @@ public class Client{
                 	case "listSubparts":
                 		listSubparts();
                 		break;
-                	case "serverLookup":
-                		serverLookup();
+                	case "lookup":
+                		lookup();
                 		break;                		
                 	case "showPart":
                 		showPartInfo();

@@ -55,11 +55,11 @@ public class Server implements PartRepository{
 		try{
 			Scanner scanner = new Scanner(System.in);
 			
-			System.out.println("Please enter registry's host: ");
+			System.out.print("Please enter registry's host: ");
 			String registryHost = scanner.nextLine();
 			Registry registry = LocateRegistry.getRegistry(registryHost);
 			
-			System.out.println("Please enter server's name: ");
+			System.out.print("Please enter server's name: ");
 			String name = scanner.nextLine();
 			PartRepository repo = (PartRepository)UnicastRemoteObject.exportObject(new Server());
 			registry.bind(name, repo);
