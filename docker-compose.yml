@@ -1,21 +1,35 @@
 version: '2'
 
 services:
-  server:
+  registry:
+    build:
+      context: .
+      dockerfile: Dockerfile-registry
+
+  server1:
     build:
       context: .
       dockerfile: Dockerfile-server
+    links:
+      - registry
+
+  server2:
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    links:
+      - registry
 
   client1:
     build:
       context: .
       dockerfile: Dockerfile-client
     links:
-      - server
+      - registry
 
   client2:
     build:
       context: .
       dockerfile: Dockerfile-client
     links:
-      - server
+      - registry
