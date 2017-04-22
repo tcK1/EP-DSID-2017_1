@@ -14,8 +14,8 @@ public class Server implements PartRepository{
 		this.parts = new LinkedList<Part>();
 	}
 	
-	public void addPart(Part part) throws Exception{
-		part.setRepo(name);
+	public void addPart(String partName, String partDescription, LinkedList<PartQuantity> subparts) throws Exception{
+		Part part = new Part(partName, partDescription, subparts, name);
 		parts.add(part);
 	}
 	

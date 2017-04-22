@@ -22,7 +22,7 @@ public class Client{
 		String name = scanner.nextLine();
 		System.out.print("Please, enter part's description: ");
 		String description = scanner.nextLine();
-		currentRepo.addPart(new Part(name, description, subparts));
+		currentRepo.addPart(name, description, subparts);
 	}
 	
 	static void addSubpart() throws Exception{

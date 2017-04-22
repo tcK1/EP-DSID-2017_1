@@ -11,11 +11,12 @@ public class Part implements Serializable{
 	LinkedList<PartQuantity> parts;
 	String repo;
 	
-	public Part(String name, String description, LinkedList<PartQuantity> parts){
+	public Part(String name, String description, LinkedList<PartQuantity> parts, String repo){
 		this.code = UUID.randomUUID();
 		this.name = name;
 		this.description = description;
 		this.parts = parts;
+		this.repo = repo;
 	}
 	
 	public int countSubparts(){
@@ -27,10 +28,6 @@ public class Part implements Serializable{
 	
 	public String getRepo(){
 		return this.repo;
-	}
-	
-	public void setRepo(String repo){
-		this.repo = repo;
 	}
 	
 	public String showPartInfo(){
