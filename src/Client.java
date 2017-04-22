@@ -124,8 +124,14 @@ public class Client{
 		else{
 			String repo = currentPart.getRepo();
 			System.out.println("Part is in '" + repo + "' repository.");
-		}
-			
+		}	
+	}
+	
+	static void whoIsRepo() throws Exception{
+		if(currentRepo == null)
+			System.err.println("No repository selected");
+		else
+			System.out.println(currentRepo.getName());
 	}
 	
     public static void main(String[] args){
@@ -169,6 +175,9 @@ public class Client{
                 		break;
                 	case "whereIsPart":
                 		whereIsPart();
+                		break;
+                	case "whoIsRepo":
+                		whoIsRepo();
                 		break;
                 	case "quit":
                 		scanner.close();

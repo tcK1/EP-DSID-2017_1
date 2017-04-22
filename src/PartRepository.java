@@ -6,6 +6,7 @@ public interface PartRepository extends Remote{
 	
 	void addPart(String name, String description, LinkedList<PartQuantity> subparts) throws Exception;
 	int countParts() throws Exception;
+	String getName() throws Exception;
 	Part getPart(String code) throws Exception;
 	Part getPart(UUID id) throws Exception;
 	String listParts() throws Exception;
