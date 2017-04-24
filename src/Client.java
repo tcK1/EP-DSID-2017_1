@@ -34,11 +34,12 @@ public class Client{
 		subparts.add(new PartQuantity(currentPart, quantity));
 	}
 	
-	static void bind() throws Exception{
+	static void connect() throws Exception{
         System.out.print("Please, enter host: ");
         String host = scanner.nextLine();
 		Registry registry = LocateRegistry.getRegistry(host);
 		currentRepo = (PartRepository)registry.lookup("repo");
+		System.out.println("Now connected to '" + currentRepo.getName() + "' server.");
 	}
 	
 	static void clearList() throws Exception{
@@ -131,7 +132,7 @@ public class Client{
 	
     public static void main(String[] args){
     	try{
-    		bind();
+    		connect();
     		while(true){
                 String line = scanner.nextLine();
                 switch(line){
@@ -159,8 +160,8 @@ public class Client{
                 	case "listSubparts":
                 		listSubparts();
                 		break;
-                	case "rebind":
-                		bind();
+                	case "reconnect":
+                		connect();
                 		break;
                 	case "showPart":
                 		showPartInfo();

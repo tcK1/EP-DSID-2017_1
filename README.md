@@ -47,5 +47,5 @@ Os comandos abaixo devem ser inseridos no console do cliente, para exibição do
 
 ### Outros comandos
 
-* **rebind**: Substitui o repositório atual pelo repositório requisitado pelo endereço.
+* **reconnect**: Substitui o repositório atual pelo repositório requisitado pelo endereço.
 * **quit**: Encerra o programa.

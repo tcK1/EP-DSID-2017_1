@@ -53,9 +53,10 @@ public class Server implements PartRepository{
 		
 	public static void main(String[] args){
 		try{
-			String name = InetAddress.getLocalHost().getHostName();
+			String name = InetAddress.getLocalHost().getHostAddress();
 			
 			Server object = new Server(name);
+			System.out.println(object.name);
 			PartRepository repo = (PartRepository)UnicastRemoteObject.exportObject(object, 0);
 			
 			Registry registry = LocateRegistry.getRegistry();
